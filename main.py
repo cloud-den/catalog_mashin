@@ -91,36 +91,28 @@ catalog = [
     }
 ]
 
-index = 0
-while index < len(catalog):
-    installment = list(catalog[index].values())[0]
-    if installment['price'] > 3000:
-        installment.update({'рассрочка': False})
-    else:
-        installment.update({'рассрочка': True})
-    index += 1
+for car in catalog:
+    car.update({'рассрочка': True})
 
 
 def find_cars(catalog, param, kriteriy):
     result = []
     for car in catalog:
-        car_name, car_info = list(car.items())[0]
-        if car_info.get(param) == kriteriy:
-            result.append(car_name)
+        key, value = list(car.items())[0]
+        if value.get(param) == kriteriy:
+            result.append(key)
     return result
 
-param = input("Введите параметр для поиска: ").strip()
-value = input("Введите значение для параметра: ").strip()
 
-if value.isdigit():
-    value = int(value)
-elif value.lower() == 'true':
-    value = True
-elif value.lower() == 'false':
-    value = False
+def main():
+    param = input("Введите параметр для поиска: ").strip()
+    kriteriy = input("Введите значение для параметра: ").strip()
 
-selected_cars = find_cars(catalog, param, value)
-if selected_cars:
-    print("Подходящие машины:", selected_cars)
-else:
-    print("Машин, подходящих под эти критерии, не найдено.")
+    selected_cars = find_cars(catalog, param, kriteriy)
+    if selected_cars:
+        print("Подходящие машины:", selected_cars)
+    else:
+        print("Машин, подходящих под эти критерии, не найдено.")
+
+if __name__ == "__main__":
+    main()
