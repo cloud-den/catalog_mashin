@@ -91,9 +91,6 @@ catalog = [
     }
 ]
 
-for car in catalog:
-    car.update({'рассрочка': True})
-
 
 def find_cars(catalog, param, kriteriy):
     result = []
@@ -105,6 +102,9 @@ def find_cars(catalog, param, kriteriy):
 
 
 def main():
+    for car in catalog:
+        car.update({'рассрочка': True})
+
     param = input("Введите параметр для поиска: ").strip()
     kriteriy = input("Введите значение для параметра: ").strip()
 
